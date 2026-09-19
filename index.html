@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./img/icon_mon.jpeg">
+    <title>Punto de Venta - Monumento</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="main-container">
+        <!-- Menú Principal con las Categorías -->
+        <div class="catalog-section">
+            <div class="header-top-info">
+                <div>
+                    <h1>🍟 Caja / Punto de Venta Monumento</h1>
+                    <p id="turno-indicador" class="turno-badge">🕒 Turno: Cargando...</p>
+                </div>
+                <!-- Casilla para el personal en turno -->
+                <div class="personal-box">
+                    <label for="personal-input">👤 <strong>Personal en turno:</strong></label>
+                    <input type="text" id="personal-input" placeholder="Ej: Carla y Juan..." oninput="actualizarPersonal()">
+                </div>
+            </div>
+
+            <p style="color: #666; margin-top: 20px; margin-bottom: 15px; font-size: 0.95rem;">Selecciona una opción para elegir tamaño (Chica, Mediana, Grande):</p>
+
+            <div class="category-grid-main">
+                <div class="main-category-card" onclick="abrirModal('clasicas')">
+                    <img src="img/clasicas.jpg" alt="Papas clásicas">
+                    <h3>Papas clásicas</h3>
+                </div>
+                <div class="main-category-card" onclick="abrirModal('cheddar')">
+                    <img src="img/cheddar.jpg" alt="Papas con cheddar">
+                    <h3>Papas con cheddar</h3>
+                </div>
+                <div class="main-category-card" onclick="abrirModal('huevo')">
+                    <img src="img/huevo.jpg" alt="Papas con huevo">
+                    <h3>Papas con huevo</h3>
+                </div>
+                <div class="main-category-card" onclick="abrirModal('cheddar_huevo')">
+                    <img src="img/cheddar_huevo.jpg" alt="Papas con cheddar y huevo">
+                    <h3>Papas c/ cheddar y huevo</h3>
+                </div>
+                <div class="main-category-card" onclick="abrirModal('salchipapas')">
+                    <img src="img/salchipapa.jpg" alt="Salchipapas">
+                    <h3>Salchipapas</h3>
+                </div>
+                <div class="main-category-card" onclick="abrirModal('salchi_chedar')">
+                    <img src="img/salchi_chedar.jpg" alt="Salchipapas con cheddar">
+                    <h3>Salchipapas c/ cheddar</h3>
+                </div>
+                <div class="main-category-card" onclick="abrirModal('salchi_huevo')">
+                    <img src="img/salchi_huevo.jpg" alt="Salchipapas con huevo">
+                    <h3>Salchipapas c/ huevo</h3>
+                </div>
+                <div class="main-category-card" onclick="abrirModal('salchi_huevo_chedar')">
+                    <img src="img/salchi_huevo_chedar.jpg" alt="Salchipapas con cheddar y huevo">
+                    <h3>Salchipapas c/ cheddar y huevo</h3>
+                </div>
+                <div class="main-category-card" onclick="abrirModal('individuales')">
+                    <img src="img/individuales.jpg" alt="Individuales">
+                    <h3>Individuales (Cono / Pancho)</h3>
+                </div>
+                <div class="main-category-card" onclick="abrirModal('bebidas')">
+                    <img src="img/bebidas.jpg" alt="Bebidas">
+                    <h3>Bebidas</h3>
+                </div>
+                <div class="main-category-card" onclick="abrirModal('promos')">
+                    <img src="img/promo.jpg" alt="Promos">
+                    <h3>Promos</h3>
+                </div>
+                <div class="main-category-card obs-card" onclick="abrirModal('observaciones')">
+                    <img src="img/icon_mon.jpeg" alt="Observaciones">
+                    <h3>Faltantes / Materiales</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ticket / Resumen de Venta -->
+        <div class="ticket-section">
+            <h1>Ticket Actual</h1>
+            <div class="ticket-items" id="ticket-items">
+                <p class="empty-msg">No hay productos seleccionados</p>
+            </div>
+
+            <!-- Selección de Método de Pago -->
+            <div class="payment-method-section">
+                <label><strong>Método de Pago:</strong></label>
+                <div class="payment-options">
+                    <button type="button" class="pay-btn active" id="btn-efectivo" onclick="seleccionarPago('Efectivo')">💵 Efectivo</button>
+                    <button type="button" class="pay-btn" id="btn-transferencia" onclick="seleccionarPago('Transferencia')">📱 Transferencia</button>
+                </div>
+                
+                <div id="transfer-options" style="display: none; margin-top: 10px;">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="check-comprobante"> Comprobante verificado / compartido
+                    </label>
+                </div>
+            </div>
+
+            <div class="ticket-total">
+                <span>Total:</span>
+                <span id="ticket-total-amount">$0</span>
+            </div>
+
+            <button class="checkout-btn" onclick="finalizarVenta()">Cobrar / Registrar Venta</button>
+        </div>
+    </div>
+
+    <!-- Ventana Emergente (Modal) -->
+    <div id="modal-container" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Título</h2>
+                <button onclick="cerrarModal()" class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body-content">
+                <!-- Se llena dinámicamente -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

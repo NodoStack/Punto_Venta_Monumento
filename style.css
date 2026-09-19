@@ -1,0 +1,382 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Outfit', sans-serif !important;
+}
+
+body {
+    background-color: #f4f7f6;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Contenedor principal centrado y con ancho máximo para pantallas grandes */
+.main-container {
+    display: flex;
+    width: 100%;
+    max-width: 1300px;
+    height: 92vh;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+/* Sección de Catálogo */
+.catalog-section {
+    flex: 2;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+/* Cabecera superior con Turno y Personal en turno */
+.header-top-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eaeaea;
+    padding-bottom: 15px;
+}
+
+.turno-badge {
+    display: inline-block;
+    background: #eef2f7;
+    color: #2c3e50;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-top: 6px;
+    border: 1px solid #dcdde1;
+}
+
+.personal-box {
+    background: #fdfefe;
+    border: 1px solid #dcdde1;
+    padding: 8px 12px;
+    border-radius: 8px;
+    min-width: 230px;
+}
+
+.personal-box label {
+    font-size: 0.8rem;
+    color: #555;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.personal-box input {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #bdc3c7;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+h1 {
+    font-size: 1.4rem;
+    color: #2c3e50;
+}
+
+/* Grilla de las categorías principales */
+.category-grid-main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 15px;
+}
+
+.main-category-card {
+    background: #fff;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.main-category-card:hover {
+    border-color: #e67e22;
+    transform: translateY(-3px);
+    background-color: #fff8f0;
+}
+
+.main-category-card img {
+    width: 75px;
+    height: 75px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+}
+
+.main-category-card h3 {
+    font-size: 0.95rem;
+    color: #2c3e50;
+}
+
+.obs-card {
+    border-color: #3498db;
+}
+
+.obs-card:hover {
+    border-color: #2980b9;
+    background-color: #ebf5fb;
+}
+
+/* Sección del Ticket */
+.ticket-section {
+    flex: 1;
+    background: #fafafa;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid #ddd;
+}
+
+.ticket-items {
+    flex: 1;
+    overflow-y: auto;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 15px;
+    padding-right: 4px;
+}
+
+.empty-msg {
+    color: #888;
+    text-align: center;
+    margin-top: 30px;
+    font-size: 0.9rem;
+}
+
+.ticket-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 0.9rem;
+}
+
+.ticket-item-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ticket-item-controls button {
+    background: #ddd;
+    border: none;
+    width: 26px;
+    height: 26px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.ticket-total {
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    color: #2c3e50;
+}
+
+.checkout-btn {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.checkout-btn:hover {
+    background-color: #219653;
+}
+
+/* Estilos de botones de pago y transferencia */
+.payment-method-section {
+    margin: 15px 0;
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+}
+
+.payment-options {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.pay-btn {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+}
+
+.pay-btn.active {
+    background-color: #ffcc00;
+    border-color: #e6b800;
+    color: #333;
+}
+
+.checkbox-container {
+    font-size: 0.85rem;
+    color: #444;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+/* Estilos del Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    width: 90%;
+    max-width: 550px;
+    max-height: 80vh;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.modal-header {
+    padding: 15px;
+    background: #2c3e50;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.modal-body {
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.modal-products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+}
+
+.modal-product-card {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.modal-product-card:hover {
+    background: #fff8f0;
+    border-color: #e67e22;
+}
+
+.modal-product-card h4 {
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+    color: #333;
+}
+
+.modal-product-card .price {
+    color: #27ae60;
+    font-weight: bold;
+    font-size: 0.95rem;
+}
+
+.obs-textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    resize: none;
+    margin-bottom: 10px;
+}
+
+.save-obs-btn {
+    background: #e67e22;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Responsivo para Celulares */
+@media (max-width: 768px) {
+    body {
+        height: auto;
+        align-items: stretch;
+    }
+    .main-container {
+        flex-direction: column;
+        height: auto;
+        max-width: 100%;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    .catalog-section, .ticket-section {
+        flex: none;
+        width: 100%;
+    }
+    .ticket-section {
+        border-left: none;
+        border-top: 1px solid #ddd;
+    }
+    .header-top-info {
+        flex-direction: column;
+    }
+}
+/* Limear tamaño de imágenes dentro de las ventanas modales */
+.modal-body img {
+    max-width: 100%;
+    height: auto;
+    max-height: 120px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 10px auto;
+}
